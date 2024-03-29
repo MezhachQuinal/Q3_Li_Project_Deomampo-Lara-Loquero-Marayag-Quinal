@@ -1,0 +1,98 @@
+
+.title{
+    text-align: center;
+    margin-top:10vh;
+}
+body{
+    background-image: url(images/coolfdadasdasdasdasda.jpg.jpg);
+    background-size: cover;
+}
+.select{
+    color:white;  
+    top: 55%;
+    position: absolute;  
+}
+.tosscoinbutton{
+    margin-left:19vw;
+    position: absolute;
+    top: 70%;
+}
+.startbutton1{
+    margin-left:940px;
+    position:absolute;
+    top: 45%;
+}
+.attackbutton1{
+    margin-left:940px;
+    position:absolute;
+    bottom:15%;
+    right: 35%;
+}
+.defendbutton1{
+    margin-left:1000px;
+    position: absolute;
+    bottom: 15%;
+    right: 60%;
+}
+#tosscoin{
+    background-color: orange;
+    color:white;
+    border-radius: 25px;
+    margin-left:700px;
+
+}
+#startButton{
+    background-color: orange;
+    color:white;
+    position:absolute;
+    border-radius: 25px;
+}
+#attackButton{
+    background-color: orange;
+    color:white;
+    border-radius: 25px;
+}
+#defendButton{
+    background-color: orange;
+    color: white;
+    border-radius: 25px;
+}
+#resetButton{
+    background-color: orange;
+    color:white;
+    border-radius: 25px;
+    top: 50%;
+    position: absolute;
+}
+#teams{
+    background-color:orange;
+    color:white;
+    border-radius: 25px;
+    top: 60%;
+    position: absolute;
+}
+.whosturncolor{
+    color:orange;
+    text-align:center;
+}
+.grantcolor{
+    color:orange;
+    text-align:center;
+}
+.playercolor{
+    color:orange;
+    justify-content: center;
+    text-align: center;
+}
+.infocolor{
+    color:orange;
+    text-align:center;
+}
+.hitblckcolor{
+    color:orange;
+    
+}
+
+#winner{
+    color: orange;
+}

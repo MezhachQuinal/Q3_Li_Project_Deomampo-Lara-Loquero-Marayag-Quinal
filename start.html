@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLLM</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="title"><img src="images/image_2024-03-27_214121562-removebg-preview.png.png"></div>
+    <div class="playercolor">
+    <p id="player1h"></p>
+    <p id="player2h"></p>
+    </div>
+    <div class="hitblckcolor">
+    <h3 id="hit"></h3>
+    <h3 id="block"></h3>
+    </div>
+    <p id="winner"></p>
+    <div class="infocolor"><p id="info"></p></div>
+    <br>
+    <div class="whosturncolor"><p id="whosturn"></p></div>
+    <div class="grantcolor"><p id="grant"></p></div>
+
+    <div class="startbutton1"><button id="startButton" onclick="startGame()"><h1>Start Game</h1></button></div>
+    <div class="tosscoinbutton"><button id="tosscoin" onclick="tossCoin()"><h1>Toss Coin</h1></button></div>
+    <div class="attackbutton1"><button id="attackButton" onclick="playerAction('attack')" disabled><h1>Attack</h1></button></div>
+    <div class="defendbutton1"><button id="defendButton" onclick="playerAction('defend')" disabled><h1>Defend</h1></button></div>
+    <div clas="resetbutton1"><button id="resetButton"><a href="index.html">Reset</a></button></div>
+    <div class="select"><label for="teams">Select</label></div>
+    <select id="teams" onchange="selectTeam()">
+        <option value="Heads">Heads</option>
+        <option value="Tails">Tails</option>
+    </select>
+
+
+    <script>
+        const startButton = document.getElementById("startButton");
+        const attackButton = document.getElementById("attackButton");
+        const defendButton = document.getElementById("defendButton");
+        const resetButton = document.getElementById("resetButton");
+
+        let p1h = 100;
+        let p2h = 100;
+        let curplayer = 1;
+
+        function startGame() {
+            startButton.disabled = true;
+            attackButton.disabled = false;
+            defendButton.disabled = false;
+            resetButton.disabled = true;
+
+            document.getElementById("player1h").innerHTML = "Player 1 Health Status: " + p1h;
+            document.getElementById("player2h").innerHTML = "Player 2 Health Status: " + p2h;
+            selectTeam();
+            document.getElementById("whosturn").innerHTML = "Player " + curplayer + "'s turn";
+        }
+
+        function selectTeam(){
+            var team=document.getElementById("teams").value
+            document.getElementById("info").innerHTML='You chose ' + team;
+            tossCoin(team);
+        }
+
+        function tossCoin(team) {
+            var opt = Math.round(Math.random()); 
+            var opt2;
+            if (opt === 0) {
+                opt2 = "Heads";
+            } else {
+                opt2 = "Tails";
+            }
+
+            document.getElementById("whosturn").innerHTML = "The coin tossed " + opt2 + ". ";
+
+            if (opt2 == team) {
+                curplayer = 1;
+            } else {
+                curplayer = 2;
+            }
+            document.getElementById("grant").innerHTML = "You are " + curplayer + ((curplayer === 1) ? "st" : "nd") + " to move";
+        }
+
+        function playerAction(action) {
+            if (action == 'attack') {
+                inflictDamage();   
+            } else if (action == 'defend') {
+                var damage = Math.floor(Math.random() * 5) + 1;
+                document.getElementById("hit").innerHTML = "You Inflicted " + damage + " damage";
+                document.getElementById("block").innerHTML = "Player "+ curplayer + " has blocked the attack!"
+            }
+            switchPlayer();
+        }
+
+        function inflictDamage() {
+    var damage = Math.floor(Math.random() * 5) + 1;
+    if (curplayer === 1) {
+        p2h -= damage;
+        p2h = Math.max(0, p2h);
+        document.getElementById("player2h").innerHTML = "Player 2 Health Status: " + p2h;
+        document.getElementById("hit").innerHTML = "You Inflicted " + damage + " damage";
+    } else {
+        p1h -= damage;
+        p1h = Math.max(0, p1h);
+        document.getElementById("player1h").innerHTML = "Player 1 Health Status: " + p1h;
+        document.getElementById("hit").innerHTML = "They Inflicted " + damage + " damage";
+    }
+
+    if (p1h === 0 || p2h === 0) {
+        document.getElementById("winner").innerHTML = "The Winner is.......... Player " + ((p1h === 0) ? "2" : "1") + "!!";
+        disableButtons();
+    }
+}
+        function switchPlayer() {
+            curplayer = curplayer === 1 ? 2 : 1;
+            document.getElementById("whosturn").innerHTML = "Player " + curplayer + "'s turn";
+        }
+
+        function disableButtons() {
+            attackButton.disabled = true;
+            defendButton.disabled = true;
+            resetButton.disabled = false;
+        }
+
+        resetButton.disabled = false;
+
+    </script>
+</body>
+</html>
